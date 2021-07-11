@@ -11,13 +11,23 @@ from PIL import ImageDraw
 from  easyocr import Reader
 import detectlanguage
 import speech_recognition as sr
+import time,datetime
+from streamlit_player import st_player
 from deep_translator import (GoogleTranslator,MicrosoftTranslator,PonsTranslator,LingueeTranslator,MyMemoryTranslator,YandexTranslator,DeepL,QCRI,single_detection,batch_detection)
 langs_dict = GoogleTranslator.get_supported_languages(as_dict=True)
 ap = argparse.ArgumentParser()
 translator = Translator()
 args = vars(ap.parse_args())
 now = dt.date.today()
+time=time.ctime()
+# gif=Image.open('yo.webp',format = 'GIF')
+# st.image(gif)
+#https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fview%2Fkick-buttowski-matrix-throwing-ball-playing-kid-butowski-gif-11711297&psig=AOvVaw0lNLxYV7qIzlySO1PnNZE3&ust=1626078041336000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCLCG-fPK2vECFQAAAAAdAAAAABAP
+st.image('https://media.giphy.com/media/xUPGGDNsLvqsBOhuU0/giphy.gif',width=500)
 st.write(f"Today is {now}")
+st.write('U checked the Website on {}'.format(time))
+# st.write("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=200)
+# st_player('pi_video.mp4')
 # print(translator.detect('この文章は日本語で書かれました。'))
 def draw_boxes(image, bounds, color='yellow',width=2): # function to draw bounding boxes around the text
     draw=ImageDraw.Draw(image)
@@ -28,11 +38,11 @@ def draw_boxes(image, bounds, color='yellow',width=2): # function to draw boundi
 
 
 def main():
-    st.title('Text To Speech')
-    st.subheader('Using streamlit and opencv')
-    choice=st.sidebar.selectbox('Select Activity',['Text to Speech','Translation','About Us'])
+    st.title('Image to Speech')
+    st.subheader('Using streamlit')
+    choice=st.sidebar.selectbox('Select Activity',['Image to Speech','Translation','About Us'])
 
-    if choice=='Text to Speech':
+    if choice=='Image to Speech':
         image_file = st.file_uploader("Upload Image",type=['jpg','png','jpeg'])
         if image_file is not None:
             image=Image.open(image_file)
@@ -66,6 +76,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='kn':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -78,6 +89,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='ta':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -90,6 +102,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='hi':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -102,6 +115,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='te':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -114,6 +128,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='ja':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -126,6 +141,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='fr':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -138,6 +154,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='Kannada':
                 if st.button('Process'):
                     # st.write(text_comb)
@@ -161,6 +178,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='kn':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -173,6 +191,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ta':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -185,6 +204,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='hi':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -197,6 +217,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='te':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -209,6 +230,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ja':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -221,6 +243,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='fr':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -233,6 +256,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='Telugu':
                 if st.button('Process'):
                     # st.write(text_comb)
@@ -256,6 +280,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='kn':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -268,6 +293,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ta':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -280,6 +306,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='hi':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -292,6 +319,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='te':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -304,6 +332,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ja':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -316,6 +345,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='fr':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -328,6 +358,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='Tamil':
                 if st.button('Process'):
                     # st.write(text_comb)
@@ -351,6 +382,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='kn':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -363,6 +395,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ta':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -375,6 +408,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='hi':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -387,6 +421,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='te':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -399,6 +434,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ja':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -411,6 +447,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='fr':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -423,6 +460,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='Hindi':
                 if st.button('Process'):
                     # st.write(text_comb)
@@ -446,6 +484,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='kn':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -458,6 +497,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ta':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -470,6 +510,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='hi':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -482,6 +523,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='te':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -494,6 +536,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ja':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -506,6 +549,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='fr':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -518,6 +562,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='Japanese':
                 if st.button('Process'):
                     # st.write(text_comb)
@@ -541,6 +586,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='kn':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -553,6 +599,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ta':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -565,6 +612,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='hi':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -577,6 +625,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='te':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -589,6 +638,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='ja':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -601,6 +651,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                     if dest_lang=='fr':
                         translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                         lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -613,6 +664,7 @@ def main():
                         st.audio(audio_bytes, format='audio/ogg',start_time=0)
                         st.success(translated)
                         st.image(image)
+                        st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='French':
             if st.button('Process'):
                 # st.write(text_comb)
@@ -636,6 +688,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='kn':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -648,6 +701,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='ta':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -660,6 +714,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='hi':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -672,6 +727,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='te':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -684,6 +740,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='ja':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -696,6 +753,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
                 if dest_lang=='fr':
                     translated = GoogleTranslator(source='auto', target=dest_lang).translate(text_comb)
                     lang = single_detection(text_comb, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -708,6 +766,7 @@ def main():
                     st.audio(audio_bytes, format='audio/ogg',start_time=0)
                     st.success(translated)
                     st.image(image)
+                    st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
     if choice=='Translation':
         st.subheader('Here the entered text is converted to requied language')
         st.write(f"Translate your thoughts.")
@@ -724,6 +783,7 @@ def main():
                 audio_file = open('user_trans.mp3', 'rb')
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format='audio/ogg',start_time=0)
+                st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='Kannada':
             if st.button('Translate'):
                 lang = single_detection(list_lang, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -734,6 +794,7 @@ def main():
                 audio_file = open('user_trans.mp3', 'rb')
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format='audio/ogg',start_time=0)
+                st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='Tamil':
             if st.button('Translate'):
                 lang = single_detection(list_lang, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -744,6 +805,7 @@ def main():
                 audio_file = open('user_trans.mp3', 'rb')
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format='audio/ogg',start_time=0)
+                st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='Japanese':
             if st.button('Translate'):
                 lang = single_detection(list_lang, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -754,6 +816,7 @@ def main():
                 audio_file = open('user_trans.mp3', 'rb')
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format='audio/ogg',start_time=0)
+                st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='French':
             if st.button('Translate'):
                 lang = single_detection(list_lang, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -764,6 +827,7 @@ def main():
                 audio_file = open('user_trans.mp3', 'rb')
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format='audio/ogg',start_time=0)
+                st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
         if list_lang=='Hindi':
             if st.button('Translate'):
                 lang = single_detection(list_lang, api_key='0a0cb5911f0575c03510ceabe182c2ad')
@@ -774,6 +838,7 @@ def main():
                 audio_file = open('user_trans.mp3', 'rb')
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format='audio/ogg',start_time=0)
+                st.image("https://media.giphy.com/media/8yFtm4Ui2viZta7TdO/giphy.gif",width=300)
     if choice=='About Us':
          st.title('About the Text To Speech')
          st.subheader('Steps to Follow :-')
@@ -791,16 +856,14 @@ def main():
          st.write('4.Click on the Process button \n')
          st.write('5.Ola text is converted and the required speech is ready \n')
          st.write('6.Enjoy Learning New things \n')
-         st.subheader("Expect the Best , Plan for the Worst, and Prepare to be Surprised  \n"
-                                                                                            "  -Denis Waitly")
          st.markdown("""Built with Streamlit by \n
          Ranjith R  \n
          Ullas Raju CR  \n
          Sujeeth Kumar GK  \n
          Madhan Kumar M """)
-         st.subheader('website url: ')
-
-
+         st.subheader('website url: https://share.streamlit.io/madhan02k/text2speech_app/main/app.py ')
+         st.subheader("Expect the Best , Plan for the Worst, and Prepare to be Surprised  \n"
+                      "  -Denis Waitly")
 
 
 
