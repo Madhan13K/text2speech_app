@@ -59,7 +59,7 @@ def main():
                 # txt=translator.detect('この文章は日本語で書かれました。')
                 image=Image.open(image_file)
                 lang='en'
-                reader = Reader([lang])
+                reader = Reader([lang],gpu=False)
                 bounds=reader.readtext(image, add_margin=0.3,width_ths=2.0,link_threshold=0.8,decoder='beamsearch',blocklist='=-')
                 draw_boxes(image,bounds)
                 text_list=reader.readtext(image,link_threshold=0.8,add_margin=0.55,width_ths=0.7,decoder='beamsearch',blocklist='=-',detail=0)
