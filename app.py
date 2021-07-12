@@ -861,8 +861,8 @@ def main():
          Ullas Raju CR  \n
          Sujeeth Kumar GK  \n
          Madhan Kumar M """)
-         st.subheader('website url: https://share.streamlit.io/madhan02k/text2speech_app/main/app.py \n
-                       GitHub:https://github.com/SujeethKumarGK/text2speech-app')
+         st.subheader('website url: https://share.streamlit.io/madhan02k/text2speech_app/main/app.py \n'+
+                       'GitHub:https://github.com/SujeethKumarGK/text2speech-app')
          st.subheader("Expect the Best , Plan for the Worst, and Prepare to be Surprised  \n"
                       "  -Denis Waitly")
 
