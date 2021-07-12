@@ -52,7 +52,7 @@ def main():
             st.image(image)
         list_lang=st.sidebar.selectbox("Select language Present in th image",['English','Kannada','Telugu','Tamil','Hindi','Japanese','French'])
         dest_lang=st.sidebar.selectbox('Select Destination Language Key',['en','kn','ta','te','hi','ja','fr'])
-        print(langs_dict)
+        #print(langs_dict)
         if list_lang=='English':
             if st.button('Process'):
                 # st.write(text_comb)
